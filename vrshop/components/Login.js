@@ -16,12 +16,12 @@ import bgimage from '../image/bg.png'
 
 
 export default class Login extends Component {
-  state = {email:"",password:""}
+  state = {email:"",password:"",token:""}
   
   static navigationOptions = {
     header: null
   }
-
+  
   checkLogin() {
     // const {email,password } = this.state
     // if (email == 'admin' & password == 'admin') {
@@ -32,8 +32,11 @@ export default class Login extends Component {
     //     text: 'Okay'
     //   }])
     // }
-
-    fetch('https://37d2ae64.ngrok.io/api/user/login', {
+    // componentDidMount(
+    //   token:json.data.user_info.api_token
+    // )
+    
+    fetch('https://6b4c99ab.ngrok.io/api/user/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -44,15 +47,15 @@ export default class Login extends Component {
         
         .then(response => response.json())
         .then(json => {
-          // console.log(json)
           if (json.data) {
+                this.setState({token: json.data.shop.user_info.api_token})
                 this.props.navigation.navigate('Home', {
+                  token: json.data.shop.user_info.api_token,
                   shop_id: json.data.shop.id,
                   latitude : json.data.shop.shop_markers[0].latitude,
                   longitude : json.data.shop.shop_markers[0].longitude
                 })
-                // Alert.alert('Welcome!.')
-                // console.log(json.data)
+                Alert.alert('Welcome!.')
 
               } 
               else {

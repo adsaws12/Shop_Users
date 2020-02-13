@@ -84,7 +84,6 @@ export default class Maps extends React.Component {
                         longitudeDelta: LONGITUDE_DELTA,
                     };
                     this.setRegion(region);
-                    // console.log(this.state)
                 },
                 (error) => {
                     switch (error.code) {
@@ -128,7 +127,6 @@ export default class Maps extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         const latitude = Number.parseFloat(this.props.navigation.state.params.latitude);
         const longitude = Number.parseFloat(this.props.navigation.state.params.longitude);
            
@@ -178,9 +176,6 @@ export default class Maps extends React.Component {
 const styles = StyleSheet.create({
     container:      {
         flex:            1,
-        backgroundColor: '#fff',
-        padding:         10,
-        justifyContent:  'center',
     },
     mapStyle:       {
         width:  Dimensions.get('window').width,

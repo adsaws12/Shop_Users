@@ -27,12 +27,13 @@ export default class Home extends Component {
       this.acceptRequest();
     }
     acceptRequest() {
-       fetch('https://37d2ae64.ngrok.io/api/shop/users/request/' + this.props.navigation.state.params.shop_id, {
+       const token = this.props.navigation.state.params.token
+       fetch('https://6b4c99ab.ngrok.io/api/shop/users/request/'+ this.props.navigation.state.params.shop_id + '?api_token='+ token , {
           method: 'GET',
         })
+        
         .then(response => response.json())
         .then(json => {
-            // console.log(json)
             this.setState({
               shopRequestInfo: json,
             });
@@ -67,7 +68,6 @@ export default class Home extends Component {
       //   })
       // }
     render() {
-      // console.log(this.props.navigation.state.params.latitude);
       if (this.props.refresh) {
           this.acceptRequest();
       }
@@ -135,14 +135,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#a81da6',
     padding: 10,
     borderWidth: 1,
-  
+      
   },
   text: {
     fontSize: 20,
     color: 'black',
   },
   view: {
-    padding: 10
+    padding: 10,
   },
   textbutton :{
     flex: 1,

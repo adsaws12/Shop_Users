@@ -12,13 +12,13 @@ export default class Items extends Component {
         super(props);
       }
     render() {
-        // console.log(this.props)
         return (
             <TouchableHighlight  onPress={() => {this.props.handleClick.navigation.navigate('Details', {
                 itemDetail: this.props.item,
                 acceptRequest: this.props.acceptRequest,   
                 latitude : this.props.latitude,
-                longitude : this.props.longitude
+                longitude : this.props.longitude,
+                token: this.props.handleClick.navigation.state.params.token
             }),{
                 
             }}}>

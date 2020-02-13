@@ -14,6 +14,9 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const entry = createStackNavigator({
+    Login: {
+      screen: Login
+    },  
     Home:{
       screen: Home,
       
@@ -27,16 +30,14 @@ const entry = createStackNavigator({
     Maps: {
       screen: Maps,
     },
-    Login: {
-      screen: Login
-    },
+  
     Register: {
       screen: Register
     },    
   },
-  {
-    initialRouteName: 'Login',
-  }
+  // {
+  //   initialRouteName: 'Login',
+  // }
 );
 
 const drawer = createDrawerNavigator(

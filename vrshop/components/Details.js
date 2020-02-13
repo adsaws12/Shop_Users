@@ -37,8 +37,9 @@ export default class Details extends Component {
 
       });   
       deleteRequest(id) {
-        // console.log(this.props.navigation.state.params.acceptRequest);
-        fetch('https://37d2ae64.ngrok.io/api/shop/users/shopusers/delete/' + id, {
+        
+       const token = this.props.navigation.state.params.token
+        fetch('https://6b4c99ab.ngrok.io/api/shop/users/shopusers/delete/' + id + '?api_token='+ token, {
            method: 'GET',
           })
 
@@ -53,7 +54,6 @@ export default class Details extends Component {
       
     render() {
       const itemDetail = this.props.navigation.state.params.itemDetail;
-      // console.log(this.props)
         return (
           <ImageBackground style={styles.imagebackground} source={require('../assets/img/background.png')} >
             <View style={styles.view}>
@@ -71,7 +71,8 @@ export default class Details extends Component {
                         latitude: itemDetail.latitude,
                         longitude: itemDetail.longitude,
                         shoplat: this.props.navigation.state.params.latitude,
-                        shoplong: this.props.navigation.state.params.longitude
+                        shoplong: this.props.navigation.state.params.longitude,
+                        token : this.props.navigation.state.params.token
                       })}>
                         <Text style={styles.locationText}>User's Location</Text>
                     </TouchableHighlight>
@@ -87,7 +88,7 @@ export default class Details extends Component {
 const styles = StyleSheet.create({
     view: {
       flex: 1,
-      padding: 10
+      padding: 10,
     },
     imagebackground: {
       flex: 1,
