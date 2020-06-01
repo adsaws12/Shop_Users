@@ -17,6 +17,8 @@ export default class Details extends Component {
         shopRequestInfo: null,
     };
   }
+  
+    //Mao ni siya ang DrawerNavigator
     static navigationOptions = ({ navigation }) => ({
         headerStyle: {
           backgroundColor: '#d477d4',
@@ -36,10 +38,13 @@ export default class Details extends Component {
     
 
       });   
+
+      //mao ni ang function if imo e click ang remove button
       deleteRequest(id) {
         
        const token = this.props.navigation.state.params.token
-        fetch('https://6b4c99ab.ngrok.io/api/shop/users/shopusers/delete/' + id + '?api_token='+ token, {
+      //  mo adto siya sa RequestController nya sa deleteRequest nga function 
+        fetch('https://707d547f.ngrok.io/api/shop/users/shopusers/delete/' + id + '?api_token='+ token, {
            method: 'GET',
           })
 

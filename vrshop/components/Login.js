@@ -32,11 +32,9 @@ export default class Login extends Component {
     //     text: 'Okay'
     //   }])
     // }
-    // componentDidMount(
-    //   token:json.data.user_info.api_token
-    // )
     
-    fetch('https://6b4c99ab.ngrok.io/api/user/login', {
+    //to the UserController login function
+    fetch('https://707d547f.ngrok.io/api/user/login', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -46,14 +44,16 @@ export default class Login extends Component {
         })
         
         .then(response => response.json())
-        .then(json => {
+        .then(json => { //na storan na og data
           if (json.data) {
-                this.setState({token: json.data.shop.user_info.api_token})
+                this.setState({token: json.data.shop.user_info.api_token}) //settan og token
                 this.props.navigation.navigate('Home', {
+                  //while nga mo navigate siya sa home ang kaning naa sa ubos e send padong adto sa home 
                   token: json.data.shop.user_info.api_token,
                   shop_id: json.data.shop.id,
                   latitude : json.data.shop.shop_markers[0].latitude,
                   longitude : json.data.shop.shop_markers[0].longitude
+                  //kaning mga data mo send didto sa home
                 })
                 Alert.alert('Welcome!.')
 
@@ -87,15 +87,13 @@ export default class Login extends Component {
                   style={styles.imagebuttomlogo} 
                   source={require('../assets/img/name.png')} 
                   />
-                  {/* <Text style={styles.logotext}>
-                          VRShopUser
-                  </Text> */}
+                 
               </View>
             <View style={styles.inputContainer}>
               <Image style={styles.inputIcon} source={{uri: 'https://img.icons8.com/ios-glyphs/30/000000/user-male.png'}}/>
               <TextInput style={styles.inputs}
                   // onChangeText = {text => this.setState({username: text})}
-                  placeholder="Email"x  
+                  placeholder="Email"
                   keyboardType="email-address"
                   underlineColorAndroid='transparent'
                   onChangeText={(email) => this.setState({email})}/>
@@ -110,13 +108,11 @@ export default class Login extends Component {
                   underlineColorAndroid='transparent'
                   onChangeText={(password) => this.setState({password})}/>
             </View>
-            <View style={styles.buttonloginregister}>      
+            <View style={styles.buttonloginregister}>                          
+                                                              {/* once nga ika click niya mo adto siya sa function nga checkLogin*/}
               <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => [this.checkLogin(),Keyboard.dismiss()]}>
                 <Text style={styles.loginText}>Login</Text>
               </TouchableHighlight>
-              {/* <TouchableHighlight style={[styles.buttonContainer, styles.registerButton]} onPress={() => this.props.navigation.navigate('Register')}>
-                  <Text style={styles.loginText}>Register</Text>
-              </TouchableHighlight> */}
             </View>
           </View>
         </ImageBackground>

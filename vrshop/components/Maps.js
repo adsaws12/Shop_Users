@@ -37,7 +37,6 @@ export default class Maps extends React.Component {
 
     componentDidMount() {
         this.getCurrentPosition();
-        // this.getMarkers()
     }
 
     setRegion(region) {
@@ -49,29 +48,6 @@ export default class Maps extends React.Component {
     setReady(ready) {
         this.setState({ready: ready});
     }
-
-    // getMarkers() {
-    //     fetch('http://bce8e3be.ngrok.io/api/shop/markers', {
-    //         method: 'GET',
-    //     })
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             let markers = [];
-    //             for (let i = 0; i < json.length; i++) {
-    //                 markers.push({
-    //                     shop_id:   json[i].shop_info.id,
-    //                     latitude:  parseFloat(json[i].latitude),
-    //                     longitude: parseFloat(json[i].longitude),
-    //                     title:     json[i].shop_info.name,
-    //                     subtitle:  json[i].shop_info.description,
-    //                 })
-    //             }
-    //             this.setState({marker: markers});
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // }
 
     getCurrentPosition() {
         try {

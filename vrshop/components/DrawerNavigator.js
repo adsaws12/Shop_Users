@@ -22,10 +22,7 @@ export default class CustomComponent extends Component {
         <View style={styles.containertopRow}>
           <Image
             style={styles.imageTopRow}
-            source={{
-              uri:
-                'https://cdn.pixabay.com/photo/2014/04/05/12/20/man-316917_960_720.jpg',
-            }}
+            source={require('../assets/img/logo.png')}
           />
         </View>
         <View style={styles.containerBottom}>
@@ -43,26 +40,7 @@ export default class CustomComponent extends Component {
               </View>
             </TouchableHighlight>
           </View>
-          {/* <TouchableHighlight 
-            underlayColor = {'#c42dbf'}
-            onPress={() => navigate('Details')}
-            style={styles.containerBottomItem}
-          >
-            <View style={styles.button}>
-            <Image style={styles.inputIcon} source={{uri: 'https://img.icons8.com/ios/50/000000/details-pane.png'}}/>     
-              <Text style={styles.txtBottom}>Details</Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight 
-            underlayColor = {'#c42dbf'}
-            onPress={() => navigate('Maps')}
-            style={styles.containerBottomItem}
-          >
-            <View style={styles.button}>
-            <Image style={styles.inputIcon} source={{uri: 'https://img.icons8.com/wired/64/000000/google-maps.png'}}/>
-              <Text style={styles.txtBottom}>Maps</Text>
-            </View>
-          </TouchableHighlight> */}
+      
 
           <TouchableHighlight 
             underlayColor = {'#c42dbf'}

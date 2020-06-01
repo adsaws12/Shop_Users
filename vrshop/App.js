@@ -6,7 +6,6 @@ import Home from "./components/Home";
 import Details from "./components/Details";
 import Maps from "./components/Maps";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Items from "./components/Item";
 
 import CustomComponent from "./components/DrawerNavigator";
@@ -29,11 +28,7 @@ const entry = createStackNavigator({
     },
     Maps: {
       screen: Maps,
-    },
-  
-    Register: {
-      screen: Register
-    },    
+    },  
   },
   // {
   //   initialRouteName: 'Login',

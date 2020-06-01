@@ -14,6 +14,7 @@ export default class Items extends Component {
     render() {
         return (
             <TouchableHighlight  onPress={() => {this.props.handleClick.navigation.navigate('Details', {
+                // samtang mo navigate niya kay tagaan siya og data padong didto sa Details.js 
                 itemDetail: this.props.item,
                 acceptRequest: this.props.acceptRequest,   
                 latitude : this.props.latitude,
@@ -24,6 +25,7 @@ export default class Items extends Component {
             }}}>
                 <View style={styles.tdtable}>
                     <View key={this.props.item.id} style={styles.itemview}>
+                        {/* display sa home.js nya gtawag na ang mga data gkan sa database */}
                         <Text style={styles.textheader}>{this.props.item.name}</Text>
                         <Text style={styles.textheader}>{this.props.item.number}</Text>
                         <Text style={styles.textheader}>{this.props.item.typeofvehicle}</Text> 

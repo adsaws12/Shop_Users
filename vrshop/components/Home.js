@@ -7,7 +7,7 @@ import {
   View, 
   ImageBackground, 
   ScrollView,
-  Button,
+  RefreshControl ,
 
 } from 'react-native';
 import Item from './Item';
@@ -18,24 +18,33 @@ export default class Home extends Component {
     this.state = {
         shopRequestInfo: [],
           isLoading: true,
-         
+          refreshing: false
         };
     this.acceptRequest = this.acceptRequest.bind(this);
   }
-    
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.acceptRequest();
+  }
     componentDidMount() {
+      //unahon og basa acceptrequest function
       this.acceptRequest();
     }
+
+    //ang kani nga function kay maoy unahon og basa
     acceptRequest() {
-       const token = this.props.navigation.state.params.token
-       fetch('https://6b4c99ab.ngrok.io/api/shop/users/request/'+ this.props.navigation.state.params.shop_id + '?api_token='+ token , {
+      //g constant ang token sa user para ma simple og tawag
+       const token = this.props.navigation.state.params.token     //id sa shop plus token
+       fetch('https://707d547f.ngrok.io/api/shop/users/request/'+ this.props.navigation.state.params.shop_id + '?api_token='+ token , {
           method: 'GET',
         })
         
         .then(response => response.json())
         .then(json => {
             this.setState({
+              //ang shoprequestinfo kay gstore ran na og mga data
               shopRequestInfo: json,
+              refreshing: false
             });
             
         })
@@ -44,7 +53,7 @@ export default class Home extends Component {
         });
     }
 
-
+    //Mao ni siya ang DrawerNavigator
     static navigationOptions = ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#d477d4',
@@ -62,15 +71,15 @@ export default class Home extends Component {
           </View>
         ),
       });
-      // redirectToRequestDetail(request) {
-      //   this.props.navigation.navigate('Details', {
-      //     requestData: request
-      //   })
-      // }
+      
     render() {
+
+      //pang refresh sa display
       if (this.props.refresh) {
           this.acceptRequest();
       }
+
+      //g constant ang mga data para matawag sa uban
       const shoplong = this.props.navigation.state.params.longitude
       const shoplat = this.props.navigation.state.params.latitude
       const items = this.state.shopRequestInfo.map((item, key) =>
@@ -78,7 +87,14 @@ export default class Home extends Component {
       );
           return (
             <ImageBackground style={styles.imagebackground} source={require('../assets/img/background.png')} >
-              <ScrollView>
+              <ScrollView
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh}
+                />
+              }
+              >
                 <View style={styles.view}>
 
                     <View style={styles.headertable}>
@@ -86,7 +102,7 @@ export default class Home extends Component {
                         <Text style={styles.textheader}>Number</Text>
                         <Text style={styles.textheader}>Type of Vehicle</Text>
                     </View>
-                
+                  {/* mga ni request gkan sa Item.js */}
                   {items}
                 </View>
               </ScrollView>
